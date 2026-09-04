@@ -6,7 +6,7 @@ import subprocess
 from collections import defaultdict
 import matplotlib.pyplot as plt
 from geopy.distance import geodesic
-import datetime
+from datetime import datetime
 
 # map for ip address to geo coord / times
 # list index 0 stores the coord (lat,lon), index 1 has (min, rtt, max
