@@ -34,9 +34,12 @@ good=0
 for ip in "${ips[@]}"; do
     [[ $good -ge 5 ]] && break
 
-    echo "Testing $ip..."
-    result=$(traceroute -n -q 3 -w 2 "$ip" 2>/dev/null)
-
+    result=$(timeout 60 traceroute -n -q 3 -w 2 "$ip" 2>/dev/null)
+    if [[ $? -eq 124 ]]; then
+        echo "SKIPPING $ip — timed out"
+        continue
+    fi
+    
     # check if final destination responded — last hop should contain the target ip
     if ! echo "$result" | tail -5 | grep -q "$ip"; then
         echo "SKIPPING $ip — did not reach destination"

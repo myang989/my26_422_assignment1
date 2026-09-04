@@ -28,16 +28,18 @@ with open('listed_iperf3_servers.csv', newline='') as f:
             continue
 
         # 1. run ping on ip
+        print(f"ping {ip}")
         result = subprocess.run(
             ['ping', '-c', '5', ip],
             capture_output=True, text=True
         )
         output = result.stdout + result.stderr
-        m = re.search(r'round-trip|rtt[^=]*=\s*([\d.]+)/([\d.]+)/([\d.]+)', output)
+        m = re.search(r'round-trip[^=]*=\s*([\d.]+)/([\d.]+)/([\d.]+)', output)
         if not m:
             print(f"{ip} unreachable")
             continue
-        
+        print("output", output)
+        print(m)
         min_rtt, avg_rtt, max_rtt = m.group(1), m.group(2), m.group(3)
         print(f"{ip} min={min_rtt}ms avg={avg_rtt}ms max={max_rtt}ms")
 
