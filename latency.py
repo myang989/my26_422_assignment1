@@ -4,6 +4,7 @@ import re
 import random
 import matplotlib.pyplot as plt
 import numpy as np
+from datetime import datetime
 
 ip_addrs = []
 with open('listed_iperf3_servers.csv', newline='') as f:
@@ -95,7 +96,12 @@ ax.set_xlabel('Destination IP')
 ax.set_title('Traceroute latency breakdown per hop')
 ax.legend(loc='upper left', bbox_to_anchor=(1, 1))  # legend outside plot
 
+#timestamp
+now = datetime.now()
+timestamp = now.strftime("%Y_%m_%d_%H-%M-%S")
+
 plt.tight_layout()
+plt.savefig(f"p2barplot_{timestamp}.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 #hop count vs rtt
@@ -111,5 +117,6 @@ ax.set_xlabel('Hop count')
 ax.set_ylabel('Final RTT (ms)')
 ax.set_title('Hop count vs RTT per destination IP')
 plt.tight_layout()
+plt.savefig(f"p2scatterplot_{timestamp}.png", dpi=300, bbox_inches='tight')
 plt.show()
     

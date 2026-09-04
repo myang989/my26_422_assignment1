@@ -1,3 +1,5 @@
+# How to run
+
 In order to run the automated scripts:
 
 For part 1, run:

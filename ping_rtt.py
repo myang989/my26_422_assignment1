@@ -6,6 +6,7 @@ import subprocess
 from collections import defaultdict
 import matplotlib.pyplot as plt
 from geopy.distance import geodesic
+import datetime
 
 # map for ip address to geo coord / times
 # list index 0 stores the coord (lat,lon), index 1 has (min, rtt, max
@@ -66,9 +67,14 @@ with open('listed_iperf3_servers.csv', newline='') as f:
 distances = [val[1] for _, val in ip_map.items()]
 rtt = [val[0]['avg'] for _, val in ip_map.items()]
 
+#timestamp
+now = datetime.now()
+timestamp = now.strftime("%Y_%m_%d_%H-%M-%S")
+
 plt.scatter(distances, rtt)
 plt.xlabel('Distance (km) from my location')
 plt.ylabel('rtt (avg of 5 pings)')
 plt.title('Plot showing distance vs rtt for iperf3serverlist ip addresses')
 plt.yticks(range(int(min(rtt)), int(max(rtt)) + 1, 25))
+plt.savefig(f"p1scatterplot_{timestamp}.png", dpi=300, bbox_inches='tight')
 plt.show()
