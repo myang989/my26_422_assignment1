@@ -1,6 +1,6 @@
 # Part 1
 ## Answer to c:
-From the scatter plot we can see a clear positive linear relationshipo betwween distance and rtt. As the distance increases from my location to the end destination ip, the round trip time increases. With the min rtt we can see the floor of the network speed which is limited by the physical distance. The max rtt can give an idea of the current network congestion. The range between min and max rtt was quite small. This indicated that the network state was quite stable.
+From the scatter plot we can see a clear positive linear relationship betwween distance and rtt. As the distance increases from my location to the end destination ip, the round trip time increases. With the min rtt we can see the floor of the network speed which is limited by the physical distance. The max rtt can give an idea of the current network congestion. The range between min and max rtt was quite small. This indicated that the network state was quite stable.
 ## File of interest:
 In the script ping_rtt.py, we loop though each valid ip address in the `listed_iperf3_servers.csv` and for each we:
 1. Run ping 5 times and get max/min/avg rtt

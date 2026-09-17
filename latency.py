@@ -26,6 +26,10 @@ for test_ip in ip_addrs:
         break
     try:
         print(f"traceroute {test_ip}")
+        # no reverse dns
+        # just 1 queri
+        # delay wait 1 sec
+        # try max 20 hops before stoping and try next
         result = subprocess.run(
             ['traceroute', '-n', '-q', '1', '-w', '1', '-m', '20', test_ip],
             capture_output=True, text=True, timeout=30
